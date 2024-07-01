@@ -8,6 +8,7 @@ type WorkoutTimerContext = {
   sets: number;
   currentExercise: number;
   currentSet: number;
+  time: number;
   timeLeft: number;
 };
 
@@ -54,6 +55,7 @@ export const workoutTimerMachine = setup({
       sets: input.sets ?? 0,
       currentExercise: 1,
       currentSet: 1,
+      time: 0,
       timeLeft: 0,
     };
   },
@@ -66,6 +68,7 @@ export const workoutTimerMachine = setup({
     work: {
       initial: 'running',
       entry: assign({
+        time: ({ context }) => context.workTime,
         timeLeft: ({ context }) => context.workTime,
       }),
       states: {
@@ -97,6 +100,7 @@ export const workoutTimerMachine = setup({
     rest: {
       initial: 'running',
       entry: assign({
+        time: ({ context }) => context.restTime,
         timeLeft: ({ context }) => context.restTime,
       }),
       exit: assign({
@@ -127,6 +131,7 @@ export const workoutTimerMachine = setup({
     break: {
       initial: 'running',
       entry: assign({
+        time: ({ context }) => context.breakTime,
         timeLeft: ({ context }) => context.breakTime,
       }),
       exit: assign({

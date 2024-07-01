@@ -2,6 +2,8 @@ import { Workout } from 'shared/model';
 import { workoutTimerMachine } from './timerMachine';
 import { useMachine } from '@xstate/react';
 import { FC } from 'react';
+import { PauseIcon, PlayIcon } from 'shared/ui';
+import classNames from 'classnames';
 
 type WorkoutTimerProps = {
   workout: Workout;
@@ -30,6 +32,9 @@ export const WorkoutTimer: FC<WorkoutTimerProps> = ({ workout }) => {
     send({ type: 'START' });
   };
 
+  const { context, value } = state;
+  const { timeLeft, time, currentExercise, currentSet } = context;
+
   const isRunning =
     state.matches({
       work: 'running',
@@ -45,52 +50,62 @@ export const WorkoutTimer: FC<WorkoutTimerProps> = ({ workout }) => {
     state.matches({ break: 'paused' });
 
   const stateValue =
-    typeof state.value === 'object'
-      ? Object.keys(state.value).join()
-      : state.value;
+    typeof value === 'object' ? Object.keys(value).join() : value;
+
+  const progressProps = {
+    '--value': 100 - (timeLeft / time) * 100 || 0,
+    '--size': '20rem',
+    '--thickness': '5px',
+  } as React.CSSProperties;
 
   return (
-    <div className="text-center flex justify-center flex-col ">
-      <h2>{stateValue}</h2>
-
-      <div className="font-mono text-6xl">
-        {`${Math.floor(state.context.timeLeft / 60)}`.padStart(2, '0')}:
-        {`${state.context.timeLeft % 60}`.padStart(2, '0')}
+    <div className="text-center flex justify-center items-center flex-col ">
+      <div
+        className={classNames('radial-progress mt-10', {
+          'text-accent': state.matches('work'),
+          'text-secondary': state.matches('rest'),
+        })}
+        style={progressProps}
+        role="progressbar"
+      >
+        <p>
+          Exercises: {currentExercise} of {workout.exercises}
+        </p>
+        <div className="my-2 font-mono text-6xl">
+          {`${Math.floor(timeLeft / 60)}`.padStart(2, '0')}:
+          {`${timeLeft % 60}`.padStart(2, '0')}
+        </div>
+        <p>{stateValue}</p>
       </div>
-      {state.value !== 'idle' && (
-        <>
-          <h2>
-            Exercise {state.context.currentExercise} of {workout.exercises}
-          </h2>
-          <h2>
-            Set {state.context.currentSet} of {workout.sets}
-          </h2>
-        </>
-      )}
+      <p className="my-2 ">
+        Sets: {currentSet} of {workout.sets}
+      </p>
 
-      {state.matches('idle') && (
-        <button onClick={startWorkout} className="btn btn-active btn-accent">
-          Start
-        </button>
-      )}
+      <div className="mt-10">
+        {state.matches('idle') && (
+          <button onClick={startWorkout} className="btn btn-circle">
+            <PlayIcon />
+          </button>
+        )}
 
-      {isRunning && (
-        <button
-          onClick={() => send({ type: 'PAUSE' })}
-          className="btn btn-active btn-warning"
-        >
-          Pause
-        </button>
-      )}
+        {isRunning && (
+          <button
+            onClick={() => send({ type: 'PAUSE' })}
+            className="btn btn-circle"
+          >
+            <PauseIcon />
+          </button>
+        )}
 
-      {isPaused && (
-        <button
-          onClick={() => send({ type: 'RESUME' })}
-          className="btn btn-active btn-success"
-        >
-          Resume
-        </button>
-      )}
+        {isPaused && (
+          <button
+            onClick={() => send({ type: 'RESUME' })}
+            className="btn btn-circle"
+          >
+            <PlayIcon />
+          </button>
+        )}
+      </div>
 
       {state.matches('done') && <h2>Workout Complete!</h2>}
     </div>
