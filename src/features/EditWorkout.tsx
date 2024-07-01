@@ -2,6 +2,7 @@ import { useForm } from 'react-hook-form';
 import { InputField } from 'shared/ui';
 import { db, Workout } from 'shared/model';
 import { FC, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 type EditFormValues = Omit<Workout, 'id'>;
 
@@ -10,6 +11,8 @@ type WorkoutEditProps = {
 };
 
 export const EditWorkout: FC<WorkoutEditProps> = ({ workout }) => {
+  const navigate = useNavigate();
+
   const { register, handleSubmit, reset } = useForm<EditFormValues>({
     defaultValues: {
       workTime: '00:00',
@@ -30,23 +33,19 @@ export const EditWorkout: FC<WorkoutEditProps> = ({ workout }) => {
 
   const handleAdd = async (data: EditFormValues) => {
     const id = await db.workouts.add(data);
-
     console.log('Workout added with id:', id);
   };
 
   const handleEdit = async (data: EditFormValues) => {
     const id = await db.workouts.put({ ...data, id: workout?.id });
-
     console.log('Workout updated:', id);
   };
 
   const handleFormSubmit = handleSubmit(async (data) => {
     try {
-      if (workout) {
-        handleEdit(data);
-      } else {
-        handleAdd(data);
-      }
+      const mutate = workout ? handleEdit : handleAdd;
+      await mutate(data);
+      navigate('/');
     } catch (error) {
       console.log(error);
     }

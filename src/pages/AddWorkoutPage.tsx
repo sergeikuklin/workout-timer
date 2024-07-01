@@ -1,11 +1,10 @@
 import { EditWorkout } from 'features/EditWorkout';
+import { Page } from 'shared/ui/Page';
 
 export const AddWorkoutPage = () => {
   return (
-    <div className="container mx-auto px-4">
-      <h1>Add Workouts</h1>
-
+    <Page title="Add Workouts">
       <EditWorkout />
-    </div>
+    </Page>
   );
 };

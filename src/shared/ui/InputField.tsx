@@ -7,14 +7,14 @@ type InputFieldProps = InputHTMLAttributes<HTMLInputElement> & {
 export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
   ({ label, ...inputProps }, ref) => {
     return (
-      <label className="form-control w-full max-w-xs">
+      <label className="form-control w-full">
         <div className="label">
           <span className="label-text">{label}</span>
         </div>
 
         <input
           {...inputProps}
-          className="input input-bordered w-full max-w-xs"
+          className="input input-bordered w-full"
           ref={ref}
         />
       </label>

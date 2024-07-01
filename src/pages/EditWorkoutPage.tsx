@@ -2,6 +2,7 @@ import { useLiveQuery } from 'dexie-react-hooks';
 import { EditWorkout } from 'features/EditWorkout';
 import { useParams } from 'react-router-dom';
 import { db } from 'shared/model';
+import { Page } from 'shared/ui/Page';
 
 export const EditWorkoutPage = () => {
   const { workoutId } = useParams();
@@ -19,10 +20,8 @@ export const EditWorkoutPage = () => {
   }
 
   return (
-    <div className="container mx-auto px-4">
-      <h1 className="text-center">Edit Workouts</h1>
-
+    <Page title="Edit Workouts">
       <EditWorkout workout={workout} />
-    </div>
+    </Page>
   );
 };
