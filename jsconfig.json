@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "pages/*": ["src/pages/*"],
+      "features/*": ["src/features/*"],
+      "shared/*": ["src/shared/*"]
+    }
+  }
+}
