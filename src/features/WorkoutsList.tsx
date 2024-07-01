@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useRevalidator } from 'react-router-dom';
 import { Workout, db } from 'shared/model';
 
 type WorkoutsListProps = {
@@ -6,9 +6,12 @@ type WorkoutsListProps = {
 };
 
 export const WorkoutsList = ({ workouts }: WorkoutsListProps) => {
+  const { revalidate } = useRevalidator();
+
   const handleRemoveWorkout = async (id: number) => {
     try {
       await db.workouts.delete(id);
+      revalidate();
     } catch (error) {
       console.log(error);
     }
