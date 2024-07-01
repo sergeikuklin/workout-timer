@@ -3,11 +3,13 @@ import { WorkoutsPage } from './WorkoutsPage';
 import { AddWorkoutPage } from './AddWorkoutPage';
 import { WorkoutPage } from './WorkoutPage';
 import { EditWorkoutPage } from './EditWorkoutPage';
+import { getWorkout, getWorkouts } from 'shared/model';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <WorkoutsPage />,
+    loader: async () => getWorkouts(),
   },
   {
     path: '/add-workout',
@@ -16,10 +18,12 @@ const router = createBrowserRouter([
   {
     path: '/edit-workout/:workoutId',
     element: <EditWorkoutPage />,
+    loader: async ({ params }) => getWorkout(Number(params.workoutId)),
   },
   {
     path: '/workout/:workoutId',
     element: <WorkoutPage />,
+    loader: async ({ params }) => getWorkout(Number(params.workoutId)),
   },
 ]);
 

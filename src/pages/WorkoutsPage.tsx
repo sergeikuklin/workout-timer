@@ -1,11 +1,10 @@
-import { useLiveQuery } from 'dexie-react-hooks';
-import { Link } from 'react-router-dom';
-import { db } from 'shared/model';
+import { Link, useLoaderData } from 'react-router-dom';
+import { Workout } from 'shared/model';
 import { WorkoutsList } from 'features/WorkoutsList';
 import { Page } from 'shared/ui/Page';
 
 export const WorkoutsPage = () => {
-  const workouts = useLiveQuery(() => db.workouts.toArray());
+  const workouts = useLoaderData() as Workout[];
 
   return (
     <Page title="Workouts">

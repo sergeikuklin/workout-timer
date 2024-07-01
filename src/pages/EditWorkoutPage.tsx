@@ -1,19 +1,10 @@
-import { useLiveQuery } from 'dexie-react-hooks';
 import { EditWorkout } from 'features/EditWorkout';
-import { useParams } from 'react-router-dom';
-import { db } from 'shared/model';
+import { useLoaderData } from 'react-router-dom';
+import { Workout } from 'shared/model';
 import { Page } from 'shared/ui/Page';
 
 export const EditWorkoutPage = () => {
-  const { workoutId } = useParams();
-
-  const workout = useLiveQuery(async () => {
-    if (!workoutId) {
-      return;
-    }
-
-    return db.workouts.get(Number(workoutId));
-  });
+  const workout = useLoaderData() as Workout;
 
   if (!workout) {
     return <div>Loading...</div>;
