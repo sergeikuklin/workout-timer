@@ -27,7 +27,7 @@ const router = createBrowserRouter(
       loader: async ({ params }) => getWorkout(Number(params.workoutId)),
     },
   ],
-  { basename: '/workout-timer/' }
+  { basename: import.meta.env.BASE_URL }
 );
 
 export const Routing = () => {
