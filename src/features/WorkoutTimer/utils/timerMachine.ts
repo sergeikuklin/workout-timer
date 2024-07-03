@@ -1,4 +1,9 @@
 import { assign, fromCallback, setup } from 'xstate';
+import {
+  playCompleteSound,
+  playLastSecondSound,
+  playSecondSound,
+} from './sound';
 
 type WorkoutTimerContext = {
   workTime: number;
@@ -32,7 +37,23 @@ export const workoutTimerMachine = setup({
   },
   actions: {
     TICK: assign({
-      timeLeft: ({ context }) => context.timeLeft - 1,
+      timeLeft: ({ context }) => {
+        const newTimeLeft = context.timeLeft - 1;
+
+        if (newTimeLeft <= 3 && newTimeLeft >= 2) {
+          playSecondSound();
+        }
+
+        if (newTimeLeft === 1) {
+          playLastSecondSound();
+        }
+
+        if (newTimeLeft === 0) {
+          playCompleteSound();
+        }
+
+        return newTimeLeft;
+      },
     }),
   },
   actors: {

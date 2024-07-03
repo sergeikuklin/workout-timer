@@ -1,5 +1,5 @@
 import { Workout } from 'shared/model';
-import { workoutTimerMachine } from './timerMachine';
+import { workoutTimerMachine } from './utils/timerMachine';
 import { useMachine } from '@xstate/react';
 import { FC } from 'react';
 import { PauseIcon, PlayIcon } from 'shared/ui';
