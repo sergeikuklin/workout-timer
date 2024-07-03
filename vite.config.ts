@@ -5,6 +5,7 @@ import path from 'path';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+  base: '/workout-timer',
   resolve: {
     alias: {
       pages: path.join(__dirname, 'src/pages/'),
