@@ -18,15 +18,18 @@ export const WorkoutsList = ({ workouts }: WorkoutsListProps) => {
   };
 
   return (
-    <div className="divide-solid divide-gray-300 divide-y">
+    <div className="divide-solid divide-gray-300 divide-y hover:bg-gray-50 rounded-md">
       {workouts.map((workout) => (
-        <div className="navbar" key={workout.id}>
-          <div className="navbar-start">
-            <Link to={`/workout/${workout.id}`}>{workout.title}</Link>
-          </div>
+        <div className="navbar items-stretch" key={workout.id}>
+          <Link
+            to={`/workout/${workout.id}`}
+            className=" container navbar-start"
+          >
+            {workout.title}
+          </Link>
           <div className="navbar-end space-x-3">
             <Link
-              className="btn btn-outline btn-primary"
+              className="btn btn-outline btn-primary "
               to={`/edit-workout/${workout.id}`}
             >
               Edit
