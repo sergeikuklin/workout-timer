@@ -30,6 +30,8 @@ const router = createBrowserRouter(
   { basename: import.meta.env.BASE_URL }
 );
 
+console.log(import.meta.env.BASE_URL);
+
 export const Routing = () => {
   return <RouterProvider router={router} />;
 };
