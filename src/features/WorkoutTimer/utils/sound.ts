@@ -1,6 +1,6 @@
-const secondSound = new Audio('public/1sec.mp3');
-const lastSecondSound = new Audio('public/last.mp3');
-const completeSound = new Audio('public/complete.mp3');
+const secondSound = new Audio('/1sec.mp3');
+const lastSecondSound = new Audio('/last.mp3');
+const completeSound = new Audio('/complete.mp3');
 
 const playSound = (sound: HTMLAudioElement) => {
   sound.pause();
