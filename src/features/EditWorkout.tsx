@@ -53,7 +53,7 @@ export const EditWorkout: FC<WorkoutEditProps> = ({ workout }) => {
 
   return (
     <form onSubmit={handleFormSubmit}>
-      <InputField label="Title" type="text" {...register('title')} />
+      <InputField label="Title" type="text" {...register('title')} required />
 
       <InputField label="Work" type="time" {...register('workTime')} />
 
