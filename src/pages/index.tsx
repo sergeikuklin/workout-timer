@@ -1,9 +1,26 @@
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import {
+  LoaderFunction,
+  RouterProvider,
+  createBrowserRouter,
+  redirect,
+} from 'react-router-dom';
 import { WorkoutsPage } from './WorkoutsPage';
 import { AddWorkoutPage } from './AddWorkoutPage';
 import { WorkoutPage } from './WorkoutPage';
 import { EditWorkoutPage } from './EditWorkoutPage';
 import { getWorkout, getWorkouts } from 'shared/model';
+
+const workoutLoader: LoaderFunction = async ({ params }) => {
+  try {
+    const workout = await getWorkout(Number(params.workoutId));
+    if (!workout) {
+      return redirect('/');
+    }
+    return workout;
+  } catch {
+    return redirect('/');
+  }
+};
 
 const router = createBrowserRouter(
   [
@@ -19,12 +36,12 @@ const router = createBrowserRouter(
     {
       path: '/edit-workout/:workoutId',
       element: <EditWorkoutPage />,
-      loader: async ({ params }) => getWorkout(Number(params.workoutId)),
+      loader: workoutLoader,
     },
     {
       path: '/workout/:workoutId',
       element: <WorkoutPage />,
-      loader: async ({ params }) => getWorkout(Number(params.workoutId)),
+      loader: workoutLoader,
     },
   ],
   { basename: import.meta.env.BASE_URL }
