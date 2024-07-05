@@ -68,7 +68,11 @@ export const EditWorkout: FC<WorkoutEditProps> = ({ workout }) => {
 
       <InputField label="Sets" type="number" min={1} {...register('sets')} />
 
-      <InputField label="Set break" type="time" {...register('breakTime')} />
+      <InputField
+        label="Break between sets"
+        type="time"
+        {...register('breakTime')}
+      />
 
       <button className="btn btn-primary mt-5" type="submit">
         Save
