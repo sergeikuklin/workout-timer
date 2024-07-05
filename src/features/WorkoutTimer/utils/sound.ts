@@ -1,6 +1,6 @@
-const secondSound = new Audio('./1sec.mp3');
-const lastSecondSound = new Audio('./last.mp3');
-const completeSound = new Audio('./complete.mp3');
+const secondSound = new Audio(`${import.meta.env.BASE_URL}1sec.mp3`);
+const lastSecondSound = new Audio(`${import.meta.env.BASE_URL}last.mp3`);
+const completeSound = new Audio(`${import.meta.env.BASE_URL}complete.mp3`);
 
 const playSound = (sound: HTMLAudioElement) => {
   sound.pause();
