@@ -15,8 +15,6 @@ const requestWakeLock = async () => {
   }
 };
 
-\
-
 export const useWakeLock = () => {
   const wakeLock = useRef<WakeLockSentinel | undefined>();
 
