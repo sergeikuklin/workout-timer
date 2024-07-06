@@ -11,7 +11,6 @@ export const Page: FC<PageProps> = ({ children, title }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  console.log(location.key);
   return (
     <>
       <header className="grid grid-cols-[50px_1fr_50px] items-center bg-white border-b-2 mb-5">
