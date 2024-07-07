@@ -3,7 +3,6 @@ const lastSecondSound = new Audio(`${import.meta.env.BASE_URL}last.mp3`);
 const completeSound = new Audio(`${import.meta.env.BASE_URL}complete.mp3`);
 
 const playSound = (sound: HTMLAudioElement) => {
-  sound.volume = 1;
   sound.pause();
   sound.currentTime = 0;
   sound.play().catch((error) => {
@@ -11,17 +10,26 @@ const playSound = (sound: HTMLAudioElement) => {
   });
 };
 
-export const playSecondSound = () => playSound(secondSound);
+export const playSecondSound = () => {
+  secondSound.volume = 1;
+  playSound(secondSound);
+};
 
-export const playLastSecondSound = () => playSound(lastSecondSound);
+export const playLastSecondSound = () => {
+  lastSecondSound.volume = 1;
+  playSound(lastSecondSound);
+};
 
-export const playCompleteSound = () => playSound(completeSound);
+export const playCompleteSound = () => {
+  completeSound.volume = 1;
+  playSound(completeSound);
+};
 
 export const initSounds = () => {
   secondSound.volume = 0;
   lastSecondSound.volume = 0;
   completeSound.volume = 0;
-  playSecondSound();
-  playLastSecondSound();
-  playCompleteSound();
+  playSound(secondSound);
+  playSound(lastSecondSound);
+  playSound(completeSound);
 };
