@@ -4,7 +4,7 @@ import { useMachine } from '@xstate/react';
 import { FC } from 'react';
 import { PauseIcon, PlayIcon } from 'shared/ui';
 import classNames from 'classnames';
-import { playSecondSound } from './utils/sound';
+import { initSounds } from './utils/sound';
 
 type WorkoutTimerProps = {
   workout: Workout;
@@ -30,7 +30,7 @@ export const WorkoutTimer: FC<WorkoutTimerProps> = ({ workout }) => {
   });
 
   const startWorkout = () => {
-    playSecondSound();
+    initSounds();
     send({ type: 'START' });
   };
 
