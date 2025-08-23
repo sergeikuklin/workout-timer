@@ -28,8 +28,7 @@
     "paths": {
       "pages": ["src/pages"],
       "features/*": ["src/features/*"],
-      "shared/*": ["src/shared/*"],
-      "@workout-interval/shared": ["../shared/src/index.ts"]
+      "shared/*": ["src/shared/*"]
     }
   },
   "include": ["src"]

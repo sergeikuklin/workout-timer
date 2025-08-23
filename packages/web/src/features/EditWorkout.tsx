@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { InputField } from 'shared/ui';
 import { addWorkout, updateWorkout } from 'shared/model';
-import type {
+import {
   Workout,
   WorkoutFormData,
   DEFAULT_WORKOUT,
