@@ -1,21 +1,32 @@
-import type { Workout } from 'shared/model';
-import { workoutTimerMachine } from './utils/timerMachine';
+import type { Workout } from '@workout-interval/shared';
+import {
+  createWorkoutTimerMachine,
+  timeStringToSeconds,
+} from '@workout-interval/shared';
 import { useMachine } from '@xstate/react';
-import { FC } from 'react';
+import { FC, useMemo } from 'react';
 import { PauseIcon, PlayIcon } from 'shared/ui';
 import classNames from 'classnames';
-import { initSounds } from './utils/sound';
+import {
+  initSounds,
+  playSecondSound,
+  playLastSecondSound,
+  playCompleteSound,
+} from './utils/sound';
 
 type WorkoutTimerProps = {
   workout: Workout;
 };
 
-const timeStringToSeconds = (time: string) => {
-  const [minutes, seconds] = time.split(':').map(Number);
-  return minutes * 60 + seconds;
-};
-
 export const WorkoutTimer: FC<WorkoutTimerProps> = ({ workout }) => {
+  const workoutTimerMachine = useMemo(() => {
+    return createWorkoutTimerMachine({
+      playSecondSound,
+      playLastSecondSound,
+      playCompleteSound,
+    });
+  }, []);
+
   const [state, send] = useMachine(workoutTimerMachine, {
     input: {
       workTime: timeStringToSeconds(workout.workTime),

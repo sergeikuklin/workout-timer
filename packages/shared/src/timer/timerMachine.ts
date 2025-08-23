@@ -1,4 +1,5 @@
 import { assign, fromCallback, setup } from 'xstate';
+import { AUDIO_CUE_TIMING } from '../constants';
 
 type WorkoutTimerContext = {
   workTime: number;
@@ -42,15 +43,18 @@ export const createWorkoutTimerMachine = (soundCallbacks: SoundCallbacks) => {
         timeLeft: ({ context }) => {
           const newTimeLeft = context.timeLeft - 1;
 
-          if (newTimeLeft <= 3 && newTimeLeft >= 2) {
+          if (
+            newTimeLeft <= AUDIO_CUE_TIMING.SECOND_SOUND_START &&
+            newTimeLeft >= AUDIO_CUE_TIMING.SECOND_SOUND_END
+          ) {
             soundCallbacks.playSecondSound();
           }
 
-          if (newTimeLeft === 1) {
+          if (newTimeLeft === AUDIO_CUE_TIMING.LAST_SECOND) {
             soundCallbacks.playLastSecondSound();
           }
 
-          if (newTimeLeft === 0) {
+          if (newTimeLeft === AUDIO_CUE_TIMING.COMPLETE) {
             soundCallbacks.playCompleteSound();
           }
 

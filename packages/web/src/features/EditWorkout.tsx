@@ -1,7 +1,11 @@
 import { useForm } from 'react-hook-form';
 import { InputField } from 'shared/ui';
 import { addWorkout, updateWorkout } from 'shared/model';
-import type { Workout, WorkoutFormData } from 'shared/model';
+import type {
+  Workout,
+  WorkoutFormData,
+  DEFAULT_WORKOUT,
+} from '@workout-interval/shared';
 import { FC, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -15,13 +19,7 @@ export const EditWorkout: FC<WorkoutEditProps> = ({ workout }) => {
   const navigate = useNavigate();
 
   const { register, handleSubmit, reset } = useForm<EditFormValues>({
-    defaultValues: {
-      workTime: '00:00',
-      restTime: '00:00',
-      exercises: 1,
-      sets: 1,
-      breakTime: '00:00',
-    },
+    defaultValues: DEFAULT_WORKOUT,
   });
 
   useEffect(() => {

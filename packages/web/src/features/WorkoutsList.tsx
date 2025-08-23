@@ -1,5 +1,5 @@
 import { Link, useRevalidator } from 'react-router-dom';
-import type { Workout } from 'shared/model';
+import type { Workout } from '@workout-interval/shared';
 import { deleteWorkout } from 'shared/model';
 
 type WorkoutsListProps = {
@@ -24,7 +24,7 @@ export const WorkoutsList = ({ workouts }: WorkoutsListProps) => {
         <div className="navbar items-stretch" key={workout.id}>
           <Link
             to={`/workout/${workout.id}`}
-            className=" container navbar-start"
+            className="container navbar-start"
           >
             {workout.title}
           </Link>

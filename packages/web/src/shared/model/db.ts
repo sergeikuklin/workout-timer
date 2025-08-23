@@ -1,5 +1,5 @@
 import Dexie, { type EntityTable } from 'dexie';
-import type { Workout } from '../types';
+import type { Workout } from '@workout-interval/shared';
 
 export const db = new Dexie('WorkoutTimer') as Dexie & {
   workouts: EntityTable<Workout, 'id'>;
