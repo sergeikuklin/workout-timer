@@ -1,5 +1,5 @@
 import { Link, useLoaderData } from 'react-router-dom';
-import { Workout } from 'shared/model';
+import type { Workout } from 'shared/model';
 import { WorkoutsList } from 'features/WorkoutsList';
 import { Page } from 'shared/ui/Page';
 

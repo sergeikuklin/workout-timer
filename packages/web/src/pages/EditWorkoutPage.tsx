@@ -1,6 +1,6 @@
 import { EditWorkout } from 'features/EditWorkout';
 import { useLoaderData } from 'react-router-dom';
-import { Workout } from 'shared/model';
+import type { Workout } from 'shared/model';
 import { Page } from 'shared/ui/Page';
 
 export const EditWorkoutPage = () => {

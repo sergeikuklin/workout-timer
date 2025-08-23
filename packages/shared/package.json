@@ -1,0 +1,18 @@
+{
+  "name": "@workout-interval/shared",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "xstate": "^5.14.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2"
+  }
+}

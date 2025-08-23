@@ -1,4 +1,4 @@
-import { Workout } from 'shared/model';
+import type { Workout } from 'shared/model';
 import { workoutTimerMachine } from './utils/timerMachine';
 import { useMachine } from '@xstate/react';
 import { FC } from 'react';
@@ -12,10 +12,7 @@ type WorkoutTimerProps = {
 
 const timeStringToSeconds = (time: string) => {
   const [minutes, seconds] = time.split(':').map(Number);
-
-  const totalSeconds = minutes * 60 + seconds;
-
-  return totalSeconds;
+  return minutes * 60 + seconds;
 };
 
 export const WorkoutTimer: FC<WorkoutTimerProps> = ({ workout }) => {

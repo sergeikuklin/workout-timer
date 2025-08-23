@@ -1,10 +1,11 @@
 import { useForm } from 'react-hook-form';
 import { InputField } from 'shared/ui';
-import { db, Workout } from 'shared/model';
+import { addWorkout, updateWorkout } from 'shared/model';
+import type { Workout, WorkoutFormData } from 'shared/model';
 import { FC, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-type EditFormValues = Omit<Workout, 'id'>;
+type EditFormValues = WorkoutFormData;
 
 type WorkoutEditProps = {
   workout?: Workout;
@@ -32,12 +33,13 @@ export const EditWorkout: FC<WorkoutEditProps> = ({ workout }) => {
   }, [reset, workout]);
 
   const handleAdd = async (data: EditFormValues) => {
-    const id = await db.workouts.add(data);
+    const id = await addWorkout(data);
     console.log('Workout added with id:', id);
   };
 
   const handleEdit = async (data: EditFormValues) => {
-    const id = await db.workouts.put({ ...data, id: workout?.id });
+    if (!workout?.id) return;
+    const id = await updateWorkout({ ...data, id: workout.id });
     console.log('Workout updated:', id);
   };
 

@@ -50,6 +50,10 @@ export default defineConfig({
       pages: path.join(__dirname, 'src/pages/'),
       features: path.join(__dirname, 'src/features/'),
       shared: path.join(__dirname, 'src/shared/'),
+      '@workout-interval/shared': path.join(
+        __dirname,
+        '../shared/src/index.ts'
+      ),
     },
   },
 });
