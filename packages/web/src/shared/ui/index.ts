@@ -6,3 +6,5 @@ export * from './Button';
 export * from './Card';
 export * from './Input';
 export * from './label';
+export * from './progress';
+export * from './CircularProgress';
