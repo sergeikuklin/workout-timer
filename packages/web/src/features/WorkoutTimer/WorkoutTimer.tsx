@@ -7,6 +7,7 @@ import { useMachine } from '@xstate/react';
 import { FC, useMemo } from 'react';
 import { PauseIcon, PlayIcon } from 'shared/ui';
 import classNames from 'classnames';
+import { Button } from '@/components/ui/button';
 import {
   initSounds,
   playSecondSound,
@@ -93,27 +94,33 @@ export const WorkoutTimer: FC<WorkoutTimerProps> = ({ workout }) => {
 
       <div className="mt-10">
         {state.matches('idle') && (
-          <button onClick={startWorkout} className="btn btn-circle">
+          <Button
+            onClick={startWorkout}
+            size="icon"
+            className="h-12 w-12 rounded-full"
+          >
             <PlayIcon />
-          </button>
+          </Button>
         )}
 
         {isRunning && (
-          <button
+          <Button
             onClick={() => send({ type: 'PAUSE' })}
-            className="btn btn-circle"
+            size="icon"
+            className="h-12 w-12 rounded-full"
           >
             <PauseIcon />
-          </button>
+          </Button>
         )}
 
         {isPaused && (
-          <button
+          <Button
             onClick={() => send({ type: 'RESUME' })}
-            className="btn btn-circle"
+            size="icon"
+            className="h-12 w-12 rounded-full"
           >
             <PlayIcon />
-          </button>
+          </Button>
         )}
       </div>
 

@@ -1,6 +1,7 @@
-import { Link, useRevalidator } from 'react-router-dom';
+import { useRevalidator, useNavigate } from 'react-router-dom';
 import type { Workout } from '@workout-interval/shared';
 import { deleteWorkout } from 'shared/model';
+import { Button } from '@/components/ui/button';
 
 type WorkoutsListProps = {
   workouts: Workout[];
@@ -8,6 +9,7 @@ type WorkoutsListProps = {
 
 export const WorkoutsList = ({ workouts }: WorkoutsListProps) => {
   const { revalidate } = useRevalidator();
+  const navigate = useNavigate();
 
   const handleRemoveWorkout = async (id: number) => {
     try {
@@ -19,29 +21,34 @@ export const WorkoutsList = ({ workouts }: WorkoutsListProps) => {
   };
 
   return (
-    <div className="divide-solid divide-gray-300 divide-y hover:bg-gray-50 rounded-md">
+    <div className="divide-y divide-border rounded-md border">
       {workouts.map((workout) => (
-        <div className="navbar items-stretch" key={workout.id}>
-          <Link
-            to={`/workout/${workout.id}`}
-            className="container navbar-start"
+        <div
+          className="flex items-center justify-between p-4 hover:bg-muted/50"
+          key={workout.id}
+        >
+          <button
+            onClick={() => navigate(`/workout/${workout.id}`)}
+            className="flex-1 text-left hover:text-primary transition-colors font-medium"
           >
             {workout.title}
-          </Link>
-          <div className="navbar-end space-x-3">
-            <Link
-              className="btn btn-outline btn-primary "
-              to={`/edit-workout/${workout.id}`}
+          </button>
+          <div className="flex space-x-2">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => navigate(`/edit-workout/${workout.id}`)}
             >
               Edit
-            </Link>
-            <button
-              type="button"
-              className="btn btn-outline btn-error"
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              className="text-destructive border-destructive hover:bg-destructive hover:text-destructive-foreground"
               onClick={() => handleRemoveWorkout(workout.id)}
             >
               Remove
-            </button>
+            </Button>
           </div>
         </div>
       ))}

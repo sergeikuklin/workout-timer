@@ -26,6 +26,7 @@
     /* Path */
     "baseUrl": ".",
     "paths": {
+      "@/*": ["./src/*"],
       "pages": ["src/pages"],
       "features/*": ["src/features/*"],
       "shared/*": ["src/shared/*"]

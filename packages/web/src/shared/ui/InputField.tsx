@@ -1,4 +1,6 @@
 import { forwardRef, InputHTMLAttributes } from 'react';
+import { Input } from '@/components/ui/input';
+import { cn } from '@/lib/utils';
 
 type InputFieldProps = InputHTMLAttributes<HTMLInputElement> & {
   label: string;
@@ -9,32 +11,31 @@ type InputFieldProps = InputHTMLAttributes<HTMLInputElement> & {
 export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
   ({ label, error, helperText, className, ...inputProps }, ref) => {
     return (
-      <label className="form-control w-full">
-        <div className="label">
-          <span className="label-text font-medium">{label}</span>
+      <div className="space-y-2">
+        <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 flex items-center justify-between">
+          <span>{label}</span>
           {inputProps.required && (
-            <span className="label-text-alt text-error">Required</span>
+            <span className="text-xs text-destructive">Required</span>
           )}
-        </div>
+        </label>
 
-        <input
+        <Input
           {...inputProps}
-          className={`input input-bordered w-full focus:input-primary ${
-            error ? 'input-error' : ''
-          } ${className || ''}`}
+          className={cn(
+            error && 'border-destructive focus-visible:ring-destructive',
+            className
+          )}
           ref={ref}
         />
 
         {(error || helperText) && (
-          <div className="label">
-            <span
-              className={`label-text-alt ${error ? 'text-error' : 'text-base-content/60'}`}
-            >
-              {error || helperText}
-            </span>
-          </div>
+          <p
+            className={`text-sm ${error ? 'text-destructive' : 'text-muted-foreground'}`}
+          >
+            {error || helperText}
+          </p>
         )}
-      </label>
+      </div>
     );
   }
 );

@@ -1,6 +1,7 @@
 import { FC, ReactNode } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ChevronLeftIcon } from './ChevronLeftIcon';
+import { Button } from '@/components/ui/button';
 
 type PageProps = {
   children: ReactNode;
@@ -13,17 +14,19 @@ export const Page: FC<PageProps> = ({ children, title }) => {
 
   return (
     <>
-      <header className="grid grid-cols-[50px_1fr_50px] items-center bg-white border-b-2 mb-5">
+      <header className="grid grid-cols-[50px_1fr_50px] items-center bg-background border-b border-border mb-5">
         {location.key !== 'default' ? (
-          <button
-            className="btn btn-circle btn-ghost"
+          <Button
+            variant="ghost"
+            size="icon"
+            className="rounded-full"
             onClick={(e) => {
               e.preventDefault();
               navigate(-1);
             }}
           >
             <ChevronLeftIcon />
-          </button>
+          </Button>
         ) : (
           <div />
         )}
