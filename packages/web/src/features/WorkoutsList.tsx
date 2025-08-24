@@ -1,7 +1,7 @@
 import { useRevalidator, useNavigate } from 'react-router-dom';
 import type { Workout } from '@workout-interval/shared';
 import { deleteWorkout } from 'shared/model';
-import { Button } from '@/components/ui/button';
+import { Button } from 'shared/ui';
 
 type WorkoutsListProps = {
   workouts: Workout[];

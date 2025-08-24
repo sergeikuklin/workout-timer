@@ -2,3 +2,7 @@ export * from './InputField';
 export * from './PlayIcon';
 export * from './PauseIcon';
 export * from './ChevronLeftIcon';
+export * from './Button';
+export * from './Card';
+export * from './Input';
+export * from './label';

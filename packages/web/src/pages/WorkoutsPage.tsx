@@ -2,7 +2,7 @@ import { useLoaderData, useNavigate } from 'react-router-dom';
 import type { Workout } from '@workout-interval/shared';
 import { WorkoutsList } from 'features/WorkoutsList';
 import { Page } from 'shared/ui/Page';
-import { Button } from '@/components/ui/button';
+import { Button } from 'shared/ui';
 
 export const WorkoutsPage = () => {
   const workouts = useLoaderData() as Workout[];

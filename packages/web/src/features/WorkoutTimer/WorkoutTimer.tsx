@@ -5,9 +5,8 @@ import {
 } from '@workout-interval/shared';
 import { useMachine } from '@xstate/react';
 import { FC, useMemo } from 'react';
-import { PauseIcon, PlayIcon } from 'shared/ui';
+import { PauseIcon, PlayIcon, Button } from 'shared/ui';
 import classNames from 'classnames';
-import { Button } from '@/components/ui/button';
 import {
   initSounds,
   playSecondSound,

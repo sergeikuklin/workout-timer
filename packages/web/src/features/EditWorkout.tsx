@@ -1,5 +1,12 @@
 import { useForm } from 'react-hook-form';
-import { InputField } from 'shared/ui';
+import {
+  InputField,
+  Button,
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from 'shared/ui';
 import { addWorkout, updateWorkout } from 'shared/model';
 import {
   Workout,
@@ -8,8 +15,6 @@ import {
 } from '@workout-interval/shared';
 import { FC, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 
 type EditFormValues = WorkoutFormData;
 

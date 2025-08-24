@@ -1,7 +1,7 @@
 import { FC, ReactNode } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ChevronLeftIcon } from './ChevronLeftIcon';
-import { Button } from '@/components/ui/button';
+import { Button } from './Button';
 
 type PageProps = {
   children: ReactNode;
