@@ -112,17 +112,6 @@ export const WorkoutTimer = ({
 
   return (
     <View className="flex-1 bg-gray-50 p-4">
-      {/* Header */}
-      <View className="flex-row items-center justify-between mb-8">
-        <TouchableOpacity onPress={onBack} className="p-2 -ml-2">
-          <Text className="text-blue-500 text-lg">← Back</Text>
-        </TouchableOpacity>
-        <Text className="text-xl font-semibold text-gray-800">
-          {workout.title}
-        </Text>
-        <View className="w-12" />
-      </View>
-
       {/* Timer Circle */}
       <View className="items-center mb-12">
         <View className="relative w-80 h-80 items-center justify-center">
