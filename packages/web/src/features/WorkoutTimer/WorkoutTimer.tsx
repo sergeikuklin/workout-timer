@@ -87,7 +87,7 @@ export const WorkoutTimer: FC<WorkoutTimerProps> = ({ workout }) => {
           value={progressValue}
           variant={getTimerVariant()}
           size="22rem"
-          strokeWidth="12px"
+          strokeWidth="6px"
           className="mb-8"
         >
           <div className="flex flex-col items-center">
