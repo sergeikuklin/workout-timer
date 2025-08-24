@@ -1,0 +1,20 @@
+{
+  "$schema": "https://reactnativereusables.com/registry/schema.json",
+  "style": "default",
+  "rsc": false,
+  "tsx": true,
+  "tailwind": {
+    "config": "tailwind.config.js",
+    "css": "global.css",
+    "baseColor": "slate",
+    "cssVariables": true,
+    "prefix": ""
+  },
+  "aliases": {
+    "components": "~/src/shared",
+    "utils": "~/src/shared/lib/utils",
+    "ui": "~/src/shared/ui",
+    "lib": "~/src/shared/lib",
+    "hooks": "~/src/shared/hooks"
+  }
+}
