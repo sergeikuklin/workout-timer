@@ -1,15 +1,30 @@
-import * as React from "react"
-import { cn } from "../lib/utils"
+import * as React from 'react';
+import { cn } from '../lib/utils';
 
-export interface CircularProgressProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface CircularProgressProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   value?: number;
   size?: string;
   strokeWidth?: string;
   variant?: 'work' | 'rest' | 'break' | 'idle' | 'done';
 }
 
-const CircularProgress = React.forwardRef<HTMLDivElement, CircularProgressProps>(
-  ({ className, value = 0, size = "320px", strokeWidth = "4px", variant = 'idle', children, ...props }, ref) => {
+const CircularProgress = React.forwardRef<
+  HTMLDivElement,
+  CircularProgressProps
+>(
+  (
+    {
+      className,
+      value = 0,
+      size = '320px',
+      strokeWidth = '4px',
+      variant = 'idle',
+      children,
+      ...props
+    },
+    ref
+  ) => {
     const radius = 45;
     const circumference = 2 * Math.PI * radius;
     const strokeDashoffset = circumference - (value / 100) * circumference;
@@ -48,15 +63,15 @@ const CircularProgress = React.forwardRef<HTMLDivElement, CircularProgressProps>
     const colors = getColors(variant);
 
     return (
-      <div 
+      <div
         ref={ref}
         className={cn(
-          "relative inline-flex items-center justify-center",
+          'relative inline-flex items-center justify-center',
           className
         )}
-        style={{ 
-          width: size, 
-          height: size
+        style={{
+          width: size,
+          height: size,
         }}
         {...props}
       >
@@ -87,21 +102,18 @@ const CircularProgress = React.forwardRef<HTMLDivElement, CircularProgressProps>
             strokeDasharray={circumference}
             strokeDashoffset={strokeDashoffset}
             strokeLinecap="round"
-            className={cn(
-              "transition-all duration-500 ease-out",
-              {
-                "animate-pulse": variant === 'work' && value > 90, // Pulse when almost done
-              }
-            )}
+            className={cn('transition-all duration-500 ease-out', {
+              'animate-pulse': variant === 'work' && value > 90, // Pulse when almost done
+            })}
           />
         </svg>
         <div className="relative z-10 flex flex-col items-center justify-center text-center">
           {children}
         </div>
       </div>
-    )
+    );
   }
-)
-CircularProgress.displayName = "CircularProgress"
+);
+CircularProgress.displayName = 'CircularProgress';
 
-export { CircularProgress }
+export { CircularProgress };
