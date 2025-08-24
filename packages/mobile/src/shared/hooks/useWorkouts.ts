@@ -15,7 +15,9 @@ export const useWorkouts = () => {
     try {
       setLoading(true);
       setError(null);
+      console.log('Loading workouts...');
       const storedWorkouts = await WorkoutDatabase.getWorkouts();
+      console.log('Loaded workouts:', storedWorkouts.length, 'workouts');
       setWorkouts(storedWorkouts);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to load workouts');
@@ -30,7 +32,9 @@ export const useWorkouts = () => {
     async (workoutData: WorkoutFormData): Promise<number | null> => {
       try {
         setError(null);
+        console.log('Adding workout to database:', workoutData);
         const newId = await WorkoutDatabase.addWorkout(workoutData);
+        console.log('Workout added with ID:', newId);
         await loadWorkouts(); // Refresh the list
         return newId;
       } catch (err) {

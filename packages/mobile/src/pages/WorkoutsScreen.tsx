@@ -6,6 +6,7 @@ import {
   FlatList,
   ActivityIndicator,
 } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import type { RootStackParamList } from './index';
 import { useWorkouts } from '../shared/hooks';
@@ -14,7 +15,14 @@ import type { Workout } from '@workout-interval/shared';
 type Props = NativeStackScreenProps<RootStackParamList, 'Workouts'>;
 
 export const WorkoutsScreen = ({ navigation }: Props) => {
-  const { workouts, loading, error } = useWorkouts();
+  const { workouts, loading, error, refresh } = useWorkouts();
+
+  // Refresh workouts when screen comes into focus
+  useFocusEffect(
+    React.useCallback(() => {
+      refresh();
+    }, [refresh])
+  );
 
   const renderWorkout = ({ item }: { item: Workout }) => (
     <TouchableOpacity

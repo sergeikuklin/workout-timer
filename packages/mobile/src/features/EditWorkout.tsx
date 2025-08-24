@@ -32,6 +32,7 @@ export const EditWorkout: FC<EditWorkoutProps> = ({ workout }) => {
   }, [reset, workout]);
 
   const handleAdd = async (data: WorkoutFormData) => {
+    console.log('Adding workout with data:', data);
     const id = await addWorkout(data);
     console.log('Workout added with id:', id);
     return id;

@@ -26,8 +26,11 @@ export class WorkoutDatabase {
    * Add a new workout
    */
   static async addWorkout(workoutData: WorkoutFormData): Promise<number> {
+    console.log('DB: Adding workout:', workoutData);
     const workouts = await this.getWorkouts();
+    console.log('DB: Current workouts count:', workouts.length);
     const newId = await this.getNextId();
+    console.log('DB: Generated new ID:', newId);
 
     const newWorkout: Workout = {
       id: newId,
@@ -35,6 +38,7 @@ export class WorkoutDatabase {
     };
 
     const updatedWorkouts = [...workouts, newWorkout];
+    console.log('DB: Saving workouts, new count:', updatedWorkouts.length);
     await Storage.setItem(STORAGE_KEYS.WORKOUTS, updatedWorkouts);
 
     return newId;
