@@ -13,7 +13,7 @@ type WorkoutTimerContext = {
   timeLeft: number;
 };
 
-type SoundCallbacks = {
+export type SoundCallbacks = {
   playSecondSound: () => void;
   playLastSecondSound: () => void;
   playCompleteSound: () => void;

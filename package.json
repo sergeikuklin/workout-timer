@@ -16,6 +16,6 @@
     "generate-pwa-assets": "npm run generate-pwa-assets --workspace=packages/web"
   },
   "devDependencies": {
-    "typescript": "^5.2.2"
+    "typescript": "~5.8.3"
   }
 }
